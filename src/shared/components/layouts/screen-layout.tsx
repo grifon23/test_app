@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React, {FC} from 'react';
 import {
   StatusBar,
@@ -6,10 +5,14 @@ import {
   StyleSheet,
   StatusBarStyle,
   View,
+  ViewStyle,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import {colors} from '../../theme';
 
 interface IProps {
+  style?: ViewStyle;
   children: JSX.Element | JSX.Element[];
   backgroundStatusBar?: string;
   paddingHorizontal?: number;
@@ -22,6 +25,7 @@ export const ScreenLayout: FC<IProps> = ({
   paddingHorizontal = 10,
   backgroundColor = colors.background,
   themeStatusBar = 'dark-content',
+  style,
 }) => {
   return (
     <SafeAreaView
@@ -30,8 +34,17 @@ export const ScreenLayout: FC<IProps> = ({
         barStyle={themeStatusBar}
         backgroundColor={backgroundStatusBar}
       />
-
-      <View style={{paddingHorizontal: paddingHorizontal}}>{children}</View>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'position'}
+        keyboardVerticalOffset={10}
+        style={{
+          paddingHorizontal: paddingHorizontal,
+          flex: 1,
+          paddingBottom: 20,
+          ...style,
+        }}>
+        {children}
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };

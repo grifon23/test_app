@@ -1,8 +1,9 @@
 export interface IAnimal {
-  id: string;
+  id: number;
   title: string;
   text: string;
   image: string;
   url: string;
+  active: number;
+ 
 }
-export interface Animals extends Array<IAnimal> {}
