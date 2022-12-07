@@ -4,7 +4,7 @@ import {getListAnimalsReq, removeAnimalReq} from '../../../api/animals';
 import {ActionButton} from '../../../shared';
 import {ScreenLayout} from '../../../shared/components/layouts';
 import {Loader} from '../../../shared/components/loader/loader';
-import {IAnimal} from '../../../typing/entity/animals';
+import {IAnimal} from '../../../typing/interfaces/entity/animals';
 import {RouteKey} from '../../../typing/enums/routes.enum';
 import {AnimalsList} from '../components';
 

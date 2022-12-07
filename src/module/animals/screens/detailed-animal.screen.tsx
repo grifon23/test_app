@@ -12,7 +12,7 @@ import {
 import {getDetailedAnimalReq} from '../../../api/animals';
 import {colors, ScreenLayout, Txt} from '../../../shared';
 import {Loader} from '../../../shared/components/loader/loader';
-import {IAnimal} from '../../../typing/entity/animals';
+import {IAnimal} from '../../../typing/interfaces/entity/animals';
 
 const SCREEN_HEIGHT = Dimensions.get('screen').height;
 
@@ -20,12 +20,12 @@ export const DetailedAnimalScreen: FC = () => {
   const route: any = useRoute();
   const [animal, setAnimal] = useState<IAnimal>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
+
   const loadAnimal = async (id: number) => {
     setIsLoading(true);
     try {
       const {data} = await getDetailedAnimalReq(id);
       setAnimal(data);
-      console.log('data', data);
     } catch (error) {}
     setIsLoading(false);
   };

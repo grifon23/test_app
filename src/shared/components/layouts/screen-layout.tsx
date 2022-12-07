@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import React, {FC} from 'react';
 import {
   StatusBar,
@@ -7,6 +6,8 @@ import {
   StatusBarStyle,
   View,
   ViewStyle,
+  KeyboardAvoidingView,
+  Platform,
 } from 'react-native';
 import {colors} from '../../theme';
 
@@ -33,8 +34,9 @@ export const ScreenLayout: FC<IProps> = ({
         barStyle={themeStatusBar}
         backgroundColor={backgroundStatusBar}
       />
-
-      <View
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'position'}
+        keyboardVerticalOffset={10}
         style={{
           paddingHorizontal: paddingHorizontal,
           flex: 1,
@@ -42,7 +44,7 @@ export const ScreenLayout: FC<IProps> = ({
           ...style,
         }}>
         {children}
-      </View>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   );
 };
