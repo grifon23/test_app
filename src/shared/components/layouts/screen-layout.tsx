@@ -6,10 +6,12 @@ import {
   StyleSheet,
   StatusBarStyle,
   View,
+  ViewStyle,
 } from 'react-native';
 import {colors} from '../../theme';
 
 interface IProps {
+  style?: ViewStyle;
   children: JSX.Element | JSX.Element[];
   backgroundStatusBar?: string;
   paddingHorizontal?: number;
@@ -22,6 +24,7 @@ export const ScreenLayout: FC<IProps> = ({
   paddingHorizontal = 10,
   backgroundColor = colors.background,
   themeStatusBar = 'dark-content',
+  style,
 }) => {
   return (
     <SafeAreaView
@@ -31,7 +34,15 @@ export const ScreenLayout: FC<IProps> = ({
         backgroundColor={backgroundStatusBar}
       />
 
-      <View style={{paddingHorizontal: paddingHorizontal}}>{children}</View>
+      <View
+        style={{
+          paddingHorizontal: paddingHorizontal,
+          flex: 1,
+          paddingBottom: 20,
+          ...style,
+        }}>
+        {children}
+      </View>
     </SafeAreaView>
   );
 };
